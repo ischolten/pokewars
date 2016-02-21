@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.ddb.joanchen.pokewars.RegisterActivity"
+    android:id="@+id/RegisterScreen"
+    android:clickable="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Username: "
+        android:id="@+id/UsernameLabelReg"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="100dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Password: "
+        android:id="@+id/PasswordLabelReg"
+        android:layout_below="@+id/UsernameLabelReg"
+        android:layout_alignParentStart="true"
+        android:password="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Confirm Password: "
+        android:id="@+id/PasswordConfirmLabel"
+        android:layout_below="@+id/PasswordLabelReg"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/PasswordLabelReg" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/UsernameReg"
+        android:layout_above="@+id/PasswordLabelReg"
+        android:layout_toEndOf="@+id/UsernameLabelReg" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/PasswordReg"
+        android:layout_above="@+id/PasswordConfirmLabel"
+        android:layout_alignStart="@+id/UsernameReg"
+        android:password="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/PasswordConfirmReg"
+        android:layout_alignBottom="@+id/PasswordConfirmLabel"
+        android:layout_toEndOf="@+id/PasswordConfirmLabel"
+        android:password="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/RegisterButtonReg"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:onClick="onClickRegister" />
+
+</RelativeLayout>
