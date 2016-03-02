@@ -1,4 +1,4 @@
 sceneSetups:
-- path: assets/Register.unity
+- path: assets/New Scene.unity
   isLoaded: 1
   isActive: 1
