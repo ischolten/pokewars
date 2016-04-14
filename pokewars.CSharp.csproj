@@ -78,7 +78,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="assets\Scripts\Login.cs" />
     <Compile Include="assets\Scripts\PokeBattle.cs" />
+    <Compile Include="assets\Scripts\Register.cs" />
     <Compile Include="assets\Scripts\SceneChangeScript.cs" />
   </ItemGroup>
   <ItemGroup>
