@@ -28,6 +28,16 @@ public class SceneChangeScript : MonoBehaviour {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Welcome");
     }
 
+	public void onGoToShop()
+	{
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
+	}
+
+	public void onGoToAccessories()
+	{
+		UnityEngine.SceneManagement.SceneManager.LoadScene("StoreTab2");
+	}
+
     public void onMenu()
     {
         print("MENU");
