@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{41279945-9CAA-5276-3C73-BBDBA78BF101}") = "pokewars", "Assembly-CSharp.csproj", "{2447673E-5BA2-B691-03AD-DF6CD6025E46}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokewars.CSharp", "pokewars.CSharp.csproj", "{5008C879-66A1-69AD-779F-E954187E1979}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2447673E-5BA2-B691-03AD-DF6CD6025E46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2447673E-5BA2-B691-03AD-DF6CD6025E46}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2447673E-5BA2-B691-03AD-DF6CD6025E46}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2447673E-5BA2-B691-03AD-DF6CD6025E46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5008C879-66A1-69AD-779F-E954187E1979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5008C879-66A1-69AD-779F-E954187E1979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5008C879-66A1-69AD-779F-E954187E1979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5008C879-66A1-69AD-779F-E954187E1979}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

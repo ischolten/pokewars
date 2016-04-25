@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+
 public class PokeBattle : MonoBehaviour
 {
     private GameObject player;
@@ -22,6 +23,9 @@ public class PokeBattle : MonoBehaviour
     public Text playerHealthNum;
     public Text enemyHealthNum;
     public Button playAgain;
+    public int enemyPoked = 0;
+    public int playerPoked = 0;
+    private Texture2D myGUITexture;
 
 
 
@@ -47,6 +51,8 @@ public class PokeBattle : MonoBehaviour
         playerHealthNum.text = playerHealth  +"";
         enemyHealthNum = GameObject.Find("EnemyHealthNum").GetComponent<Text>();
         enemyHealthNum.text = enemyHealth + "";
+        enemyPoked = 0;
+        enemyPoked = 0;
         Debug.Log("Initialized!");
         if (rankDiff < 0)
         {
@@ -68,7 +74,6 @@ public class PokeBattle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
     }
 
@@ -77,8 +82,7 @@ public class PokeBattle : MonoBehaviour
         if (playerHealth > 0 && enemyHealth > 0)
         {
 
-
-            //animation
+            enemyPoked = 1;
 
             //poke
 
@@ -131,6 +135,8 @@ public class PokeBattle : MonoBehaviour
             }
             else if (playerHealth <= 0)
             {
+                playerHealthBar.transform.localScale = new Vector3(0, enemyHealthBar.transform.localScale.y, enemyHealthBar.transform.localScale.z);
+                playerHealthNum.text = "0";
                 endBattle(enemy);
             }
             else if (enemyHealth <= 0)
@@ -209,6 +215,8 @@ public class PokeBattle : MonoBehaviour
             }
             else if (enemyHealth <= 0)
             {
+                enemyHealthBar.transform.localScale = new Vector3(0, playerHealthBar.transform.localScale.y, playerHealthBar.transform.localScale.z);
+                enemyHealthNum.text = "0";
                 endBattle(player);
             }
         }
@@ -218,15 +226,19 @@ public class PokeBattle : MonoBehaviour
 
     void endBattle(GameObject winner)
     {
+
         if (winner.name.Equals(enemy.name))
         {
+            myGUITexture = (Texture2D)Resources.Load("tempLoseScreen.png");
             Debug.Log("Sorry, you lost. You lost both experience and gold.");
             playerXP -= 15;
             playerGold -= (int)(playerGold * .05);
-            //load lose screen
-        }
+            
+    //load lose screen
+}
         else
         {
+            myGUITexture = (Texture2D)Resources.Load("tempWinScreen.png");
             Debug.Log("Congratulations! You won! You have gained both experience and gold!");
             playerGold += (int)(enemyGold * .05) + 50;
             playerXP += 40;
@@ -259,5 +271,7 @@ public class PokeBattle : MonoBehaviour
         }
     }
         
+
+
 
 }
