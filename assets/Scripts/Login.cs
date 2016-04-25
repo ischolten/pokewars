@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System; 
+using System.Collections.Generic;
 
 public class Login : MonoBehaviour {
 
     private InputField usernameInput;
     private InputField passwordInput;
+	private HttpReq db;
 
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
@@ -31,8 +34,7 @@ public class Login : MonoBehaviour {
         } 
         if (usernameInput.text != "" && passwordInput.text != "")
         {
-            IEnumerator www = loginToDatabase(usernameInput.text, passwordInput.text);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Profile");
+			StartCoroutine(loginToDatabase(usernameInput.text, passwordInput.text));
         }
         else if( usernameInput.text == "" && passwordInput.text == "")
         {
@@ -47,14 +49,22 @@ public class Login : MonoBehaviour {
         
     }
 
-    IEnumerator loginToDatabase(string username, string password)
+	public IEnumerator loginToDatabase(string username, string password)
     {
-        string url = "70.46.202.195/pokewars/index.php/main/process/";
-        string json = string.Format("{\"command\":\"login\",\"username\":\"%s\",\"password\":\"%s\"}", username, password);
-        url += json;
-        WWW www = new WWW(url);
-        yield return www;
-
+		db = GameObject.Find("HttpReq").GetComponentInChildren<HttpReq>();
+		WWW results = db.GET("http://70.46.202.195/pokewars/index.php/main/process/%20%7B%22command%22:%22login%22,%22username%22:%22"
+			+ username + "%22,%22password%22:%22" + password + "%22%7D");
+		yield return results;
+	    char[] delimiterChars = { ' ', ',', '{', ':', '"' };
+		string[] words = results.text.Split('"');
+		Int32.TryParse (words [3], out ApplicationModel.id);
+		ApplicationModel.name = words[7];
+		Int32.TryParse(words[19],out ApplicationModel.experience);
+		Int32.TryParse (words [23], out ApplicationModel.health);
+		Int32.TryParse (words[27],out ApplicationModel.strength);
+		Int32.TryParse(words[31],out ApplicationModel.speed);
+		ApplicationModel.gold = 1000;
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Profile");
     }
 
     public void onClickRegister()
