@@ -47,6 +47,7 @@ public class HealthBars : MonoBehaviour
             {
                 playerHealthBar.transform.localScale = new Vector3((float)(playerHealth * .01 * 1.44), playerHealthBar.transform.localScale.y, playerHealthBar.transform.localScale.z);
                 playerHealthNum.text = playerHealth + "";
+				mainCamera.GetComponent<EnemyMovesLeft>().finishedEnemyPoke = 0;
             }
         }
         else if (enemyHealth <= 0)

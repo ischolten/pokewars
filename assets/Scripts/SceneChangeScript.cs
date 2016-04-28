@@ -38,6 +38,11 @@ public class SceneChangeScript : MonoBehaviour {
 		UnityEngine.SceneManagement.SceneManager.LoadScene("Town");
 	}
 
+	public void onGoToBattle()
+	{
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Battle");
+	}
+
 	public void onGoToAccessories()
 	{
 		UnityEngine.SceneManagement.SceneManager.LoadScene("StoreTab2");

@@ -31,7 +31,7 @@ public class PlayerMoveRight : MonoBehaviour {
 		if (mainCamera.GetComponent<PokeBattle>().enemyPoked == 1) { 
             if (player.transform.position.x < enemy.transform.position.x)
             {
-                player.transform.Translate(new Vector3(1, 0, 0) * 4f * Time.deltaTime);
+                player.transform.Translate(new Vector3(1, 0, 0) * 8f * Time.deltaTime);
 
             } else if (player.transform.position.x >= enemy.transform.position.x )
             {

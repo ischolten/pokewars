@@ -28,7 +28,7 @@ public class EnemyMovesLeft : MonoBehaviour {
         {
             if (enemy.transform.position.x > player.transform.position.x)
             {
-                enemy.transform.Translate(new Vector3(-1, 0, 0) * 4f * Time.deltaTime);
+				enemy.transform.Translate(new Vector3(-1, 0, 0) * 8f * Time.deltaTime);
 
             }
             else if (enemy.transform.position.x <= player.transform.position.x)
