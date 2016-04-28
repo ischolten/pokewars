@@ -7,8 +7,8 @@ public class PokeBattle : MonoBehaviour
 {
     private GameObject player;
     private GameObject enemy;
-    private int playerHealth;
-    private int enemyHealth;
+    public int playerHealth;
+    public int enemyHealth;
     private int playerXP;
     private int playerGold;
     private int enemyXP;
@@ -135,21 +135,21 @@ public class PokeBattle : MonoBehaviour
             }
             else if (playerHealth <= 0)
             {
-                playerHealthBar.transform.localScale = new Vector3(0, enemyHealthBar.transform.localScale.y, enemyHealthBar.transform.localScale.z);
-                playerHealthNum.text = "0";
+                //playerHealthBar.transform.localScale = new Vector3(0, enemyHealthBar.transform.localScale.y, enemyHealthBar.transform.localScale.z);
+                //playerHealthNum.text = "0";
                 endBattle(enemy);
             }
             else if (enemyHealth <= 0)
             {
-                enemyHealthBar.transform.localScale = new Vector3(0, enemyHealthBar.transform.localScale.y, enemyHealthBar.transform.localScale.z);
-                enemyHealthNum.text = "0";
+                //enemyHealthBar.transform.localScale = new Vector3(0, enemyHealthBar.transform.localScale.y, enemyHealthBar.transform.localScale.z);
+                //enemyHealthNum.text = "0";
                 endBattle(player);
             }
 
         }
 
-        enemyHealthBar.transform.localScale = new Vector3((float)(enemyHealth*.01*1.44), enemyHealthBar.transform.localScale.y, enemyHealthBar.transform.localScale.z);
-        enemyHealthNum.text = enemyHealth + "";
+        //enemyHealthBar.transform.localScale = new Vector3((float)(enemyHealth*.01*1.44), enemyHealthBar.transform.localScale.y, enemyHealthBar.transform.localScale.z);
+        //enemyHealthNum.text = enemyHealth + "";
     }
 
     public void pokePlayer()
@@ -208,20 +208,20 @@ public class PokeBattle : MonoBehaviour
             // check for battle end
             if (playerHealth <= 0)
             {
-                playerHealthBar.transform.localScale = new Vector3(0, playerHealthBar.transform.localScale.y, playerHealthBar.transform.localScale.z);
-                playerHealthNum.text = "0";
+                //playerHealthBar.transform.localScale = new Vector3(0, playerHealthBar.transform.localScale.y, playerHealthBar.transform.localScale.z);
+                //playerHealthNum.text = "0";
                 endBattle(enemy);
 
             }
             else if (enemyHealth <= 0)
             {
-                enemyHealthBar.transform.localScale = new Vector3(0, playerHealthBar.transform.localScale.y, playerHealthBar.transform.localScale.z);
-                enemyHealthNum.text = "0";
+                //enemyHealthBar.transform.localScale = new Vector3(0, playerHealthBar.transform.localScale.y, playerHealthBar.transform.localScale.z);
+                //enemyHealthNum.text = "0";
                 endBattle(player);
             }
         }
-        playerHealthBar.transform.localScale = new Vector3((float)(playerHealth * .01*1.44), playerHealthBar.transform.localScale.y, playerHealthBar.transform.localScale.z);
-        playerHealthNum.text = playerHealth + "";
+        //playerHealthBar.transform.localScale = new Vector3((float)(playerHealth * .01*1.44), playerHealthBar.transform.localScale.y, playerHealthBar.transform.localScale.z);
+        //playerHealthNum.text = playerHealth + "";
     }
 
     void endBattle(GameObject winner)

@@ -6,12 +6,12 @@ public class PlayerMoveRight : MonoBehaviour {
     GameObject player;
     GameObject enemy;
     Vector3 startPosition;
-    int poked;
+    public int poked;
     int forward;
     int backward;
     GameObject button;
     GameObject mainCamera;
-    public int finishedPoke;
+    public int finishedPlayerPoke = 0;
 
     // Use this for initialization
     void Start () {
@@ -23,26 +23,21 @@ public class PlayerMoveRight : MonoBehaviour {
         forward = 0;
         backward = 0;
         button = GameObject.Find("Enemy");
+        finishedPlayerPoke = 0;
     }
 
     // Update is called once per frame
     void Update() {
-        poked = mainCamera.GetComponent<PokeBattle>().enemyPoked;
-        if (poked == 1)
-        {
-            forward = 1;
-        }
-        if (poked == 1) { 
-            if (player.transform.position.x < enemy.transform.position.x && forward == 1)
+		if (mainCamera.GetComponent<PokeBattle>().enemyPoked == 1) { 
+            if (player.transform.position.x < enemy.transform.position.x)
             {
                 player.transform.Translate(new Vector3(1, 0, 0) * 4f * Time.deltaTime);
 
             } else if (player.transform.position.x >= enemy.transform.position.x )
             {
                 player.transform.position = startPosition;
-                poked = 0;
                 mainCamera.GetComponent<PokeBattle>().enemyPoked = 0;
-                finishedPoke = 1;
+                poked = 1;
             }
         }
 
