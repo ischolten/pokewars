@@ -10,6 +10,7 @@ public class ApplicationModel
 	static public int speed;
 	static public int gold;
 	static public int rank;
+	static public ArrayList items;
 	static public string name;
 	static public int id;
 }

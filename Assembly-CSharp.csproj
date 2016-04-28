@@ -49,13 +49,13 @@
      <Compile Include="assets\Scripts\EnemyMovesLeft.cs" />
      <Compile Include="assets\Scripts\HttpReq.cs" />
      <Compile Include="assets\Scripts\Login.cs" />
-     <Compile Include="assets\Scripts\Player.cs" />
      <Compile Include="assets\Scripts\PlayerMoveRight.cs" />
      <Compile Include="assets\Scripts\PokeBattle.cs" />
      <Compile Include="assets\Scripts\ProfileController.cs" />
      <Compile Include="assets\Scripts\Register.cs" />
      <Compile Include="assets\Scripts\SceneChangeScript.cs" />
      <Compile Include="assets\Scripts\ShopLogic.cs" />
+     <Compile Include="assets\Scripts\Store.cs" />
      <None Include="assets\bin\Data\settings.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
