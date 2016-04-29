@@ -24,19 +24,22 @@ public class EnemyMovesLeft : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (mainCamera.GetComponent<PlayerMoveRight>().poked == 1)
-        {
-            if (enemy.transform.position.x > player.transform.position.x)
-            {
-				enemy.transform.Translate(new Vector3(-1, 0, 0) * 8f * Time.deltaTime);
+		if (mainCamera.GetComponent<PokeBattle> ().enemyHealth > 0) {
+			if (mainCamera.GetComponent<PlayerMoveRight> ().poked == 1) {
+				if (enemy.transform.position.x > player.transform.position.x) {
+					if (mainCamera.GetComponent<PokeBattle> ().enemyMiss == 1) {
+						enemy.transform.Translate (new Vector3 ((float)-1, (float).75, 0) * 8f * Time.deltaTime);
+					} else {
+						enemy.transform.Translate (new Vector3 (-1, 0, 0) * 8f * Time.deltaTime);
+					}
 
-            }
-            else if (enemy.transform.position.x <= player.transform.position.x)
-            {
-                enemy.transform.position = startPosition;
-                mainCamera.GetComponent<PlayerMoveRight>().poked = 0;
-                finishedEnemyPoke = 1; 
-            }
-        }
+				} else if (enemy.transform.position.x <= player.transform.position.x) {
+					enemy.transform.position = startPosition;
+					mainCamera.GetComponent<PlayerMoveRight> ().poked = 0;
+					mainCamera.GetComponent<PokeBattle> ().enemyMiss = 0;
+					finishedEnemyPoke = 1; 
+				}
+			}
+		}
     }
 }

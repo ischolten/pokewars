@@ -22,9 +22,10 @@ public class PokeBattle : MonoBehaviour
     public GameObject enemyHealthBar;
     public Text playerHealthNum;
     public Text enemyHealthNum;
-    public Button playAgain;
     public int enemyPoked = 0;
     public int playerPoked = 0;
+	public int enemyMiss;
+	public int playerMiss;
     private Texture2D myGUITexture;
 
 
@@ -93,6 +94,7 @@ public class PokeBattle : MonoBehaviour
                 hit = (int)Random.Range(0, 5);
                 if (hit <= 1)
                 {
+					playerMiss = 1;
                     Debug.Log("You missed.");
                 }
                 else
@@ -107,6 +109,7 @@ public class PokeBattle : MonoBehaviour
                 hit = (int)Random.Range(0, 10);
                 if (hit <= 2)
                 {
+					playerMiss = 1;
                     Debug.Log("You missed.");
                 }
                 else
@@ -120,6 +123,7 @@ public class PokeBattle : MonoBehaviour
                 hit = (int)Random.Range(0, 15);
                 if (hit <= 2)
                 {
+					playerMiss = 1;
                     Debug.Log("You missed.");
                 }
                 else
@@ -169,6 +173,7 @@ public class PokeBattle : MonoBehaviour
                 hit = (int)Random.Range(0, 15);
                 if (hit <= 2)
                 {
+					enemyMiss = 1;
                     Debug.Log("Enemy missed.");
                 }
                 else
@@ -183,6 +188,7 @@ public class PokeBattle : MonoBehaviour
                 hit = (int)Random.Range(0, 10);
                 if (hit <= 2)
                 {
+					enemyMiss = 1;
                     Debug.Log("Enemy missed.");
                 }
                 else
@@ -196,6 +202,7 @@ public class PokeBattle : MonoBehaviour
                 hit = (int)Random.Range(0, 5);
                 if (hit <= 1)
                 {
+					enemyMiss = 1;
                     Debug.Log("Enemy missed.");
                 }
                 else
@@ -262,14 +269,7 @@ public class PokeBattle : MonoBehaviour
         yield return www;
     }
 
-    public void playBattleAgain()
-    {
-        GameObject button = GameObject.Find("PlayAgainButton");
-        if (button.GetComponent<Button>())
-        {
-            Start();
-        }
-    }
+    
         
 
 
