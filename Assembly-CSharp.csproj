@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="assets\Scripts\ApplicationModel.cs" />
+     <Compile Include="assets\Scripts\EnemyModel.cs" />
      <Compile Include="assets\Scripts\EnemyMovesLeft.cs" />
      <Compile Include="assets\Scripts\HealthBars.cs" />
      <Compile Include="assets\Scripts\HttpReq.cs" />
@@ -73,15 +74,6 @@
  </Reference>
  <Reference Include="System">
  <HintPath>/Users/joanchen/Desktop/iris/pokewars/Assets/bin/Data/Managed/System.dll</HintPath>
- </Reference>
- <Reference Include="System">
- <HintPath>/Users/joanchen/Desktop/iris/pokewars/assets/bin/Data/Managed/System.dll</HintPath>
- </Reference>
- <Reference Include="System.Core">
- <HintPath>/Users/joanchen/Desktop/iris/pokewars/assets/bin/Data/Managed/System.Core.dll</HintPath>
- </Reference>
- <Reference Include="Mono.Security">
- <HintPath>/Users/joanchen/Desktop/iris/pokewars/assets/bin/Data/Managed/Mono.Security.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
