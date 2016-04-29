@@ -34,7 +34,8 @@ public class PokeBattle : MonoBehaviour
 	private int playerAccuracy;
 	private int enemyAccuracy;
 
-
+    private Text console;
+    public int hitDamage;
 
 
     // Use this for initialization
@@ -43,14 +44,18 @@ public class PokeBattle : MonoBehaviour
         //initializing
         player = GameObject.Find("Avatar");
         enemy = GameObject.Find("Enemy");
-		playerHealth = ApplicationModel.health; //need to get max health from database
-        enemyHealth = EnemyModel.health;
-		playerXP = ApplicationModel.experience; //need to get XP from database
-        enemyXP = EnemyModel.experience;
-		playerRank = ApplicationModel.rank; //need to get rank from database
-        enemyRank = EnemyModel.rank;
-		playerGold = ApplicationModel.gold; //need to get gold from database
-        enemyGold = EnemyModel.gold;
+		playerHealth = ApplicationModel.health;
+        //enemyHealth = EnemyModel.health;
+        enemyHealth = 100;
+		playerXP = ApplicationModel.experience;
+        //enemyXP = EnemyModel.experience;
+        enemyXP = 100;
+		playerRank = ApplicationModel.rank;
+        //enemyRank = EnemyModel.rank;
+        enemyRank = 2;
+		playerGold = ApplicationModel.gold;
+        //enemyGold = EnemyModel.gold;
+        enemyGold = 300;
         rankDiff = playerRank - enemyRank;
 
         playerHealthBar = GameObject.Find("PlayerHealth");
@@ -62,9 +67,14 @@ public class PokeBattle : MonoBehaviour
         enemyPoked = 0;
 
 		playerStrength = ApplicationModel.strength;
-		enemyStrength = EnemyModel.strength;
+        //enemyStrength = EnemyModel.strength;
+        enemyStrength = 10;
 		playerAccuracy = ApplicationModel.speed;
-		enemyAccuracy = EnemyModel.speed;
+        //enemyAccuracy = EnemyModel.speed;
+        enemyAccuracy = 10;
+
+        console = GameObject.Find("Console").GetComponent<Text>();
+        console.text = "Poke your enemy!   -->";
 
         Debug.Log("Initialized!");
         if (rankDiff < 0)
@@ -99,7 +109,7 @@ public class PokeBattle : MonoBehaviour
 			//poke
 
 			int hitAccuracy = (int)Random.Range (1, playerAccuracy + 5);
-			int hitDamage = (int)Random.Range ((int)(playerStrength / 2), playerStrength);
+			hitDamage = (int)Random.Range ((int)(playerStrength / 2), playerStrength);
 
 			if (hitAccuracy >= playerAccuracy) {
 				playerMiss = 1;
@@ -140,7 +150,7 @@ public class PokeBattle : MonoBehaviour
 
 
 			int hitAccuracy = (int)Random.Range (1, enemyAccuracy + 5);
-			int hitDamage = (int)Random.Range ((int)(enemyStrength / 2), enemyStrength);
+			hitDamage = (int)Random.Range ((int)(enemyStrength / 2), enemyStrength);
 
 			if (hitAccuracy >= enemyAccuracy) {
 				enemyMiss = 1;

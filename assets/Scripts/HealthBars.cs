@@ -17,6 +17,7 @@ public class HealthBars : MonoBehaviour
     GameObject mainCamera;
 
 
+
     // Use this for initialization
     void Start()
     {
@@ -29,6 +30,7 @@ public class HealthBars : MonoBehaviour
         playerHealthNum.text = playerHealth + "";
         enemyHealthNum = GameObject.Find("EnemyHealthNum").GetComponent<Text>();
         enemyHealthNum.text = enemyHealth + "";
+        
     }
 
     // Update is called once per frame
@@ -36,6 +38,7 @@ public class HealthBars : MonoBehaviour
     {
         playerHealth = mainCamera.GetComponent<PokeBattle>().playerHealth;
         enemyHealth = mainCamera.GetComponent<PokeBattle>().enemyHealth;
+        
 
 		if (mainCamera.GetComponent<PlayerMoveRight> ().poked == 1) {
 			if (enemyHealth <= 0) {
@@ -45,6 +48,7 @@ public class HealthBars : MonoBehaviour
 				enemyHealthBar.transform.localScale = new Vector3 ((float)(enemyHealth * .01 * 1.44), enemyHealthBar.transform.localScale.y, enemyHealthBar.transform.localScale.z);
 				enemyHealthNum.text = enemyHealth + "";
 			}
+
 		} else if (mainCamera.GetComponent<EnemyMovesLeft> ().finishedEnemyPoke == 1) {
 			if (playerHealth <= 0) {
 				playerHealthBar.transform.localScale = new Vector3 (0, enemyHealthBar.transform.localScale.y, enemyHealthBar.transform.localScale.z);
@@ -54,6 +58,6 @@ public class HealthBars : MonoBehaviour
 				playerHealthNum.text = playerHealth + "";
 				mainCamera.GetComponent<EnemyMovesLeft> ().finishedEnemyPoke = 0;
 			}
-		}
+        }
     }
 }

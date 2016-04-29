@@ -12,6 +12,9 @@ public class PlayerMoveRight : MonoBehaviour {
     GameObject button;
     GameObject mainCamera;
     public int finishedPlayerPoke = 0;
+    public Text console;
+    private int forConsoleMiss;
+    int hitDamage;
 
     // Use this for initialization
     void Start () {
@@ -24,6 +27,8 @@ public class PlayerMoveRight : MonoBehaviour {
         backward = 0;
         button = GameObject.Find("Enemy");
         finishedPlayerPoke = 0;
+        console = GameObject.Find("Console").GetComponent<Text>();
+        
     }
 
     // Update is called once per frame
@@ -33,8 +38,10 @@ public class PlayerMoveRight : MonoBehaviour {
             {
 				if (mainCamera.GetComponent<PokeBattle> ().playerMiss == 1) {
 					player.transform.Translate (new Vector3 ((float)1, (float).75, 0) * 8f * Time.deltaTime);
+                    forConsoleMiss = 1;
 				} else {
 					player.transform.Translate (new Vector3 (1, 0, 0) * 8f * Time.deltaTime);
+                    forConsoleMiss = 0;
 				}
             } else if (player.transform.position.x >= enemy.transform.position.x )
             {
@@ -42,6 +49,14 @@ public class PlayerMoveRight : MonoBehaviour {
                 mainCamera.GetComponent<PokeBattle>().enemyPoked = 0;
 				mainCamera.GetComponent<PokeBattle>().playerMiss = 0;
                 poked = 1;
+                if(forConsoleMiss == 1)
+                {
+                    console.text = "You tried to poke the enemy and missed.";
+                } else
+                {
+                    hitDamage = mainCamera.GetComponent<PokeBattle>().hitDamage;
+                    console.text = ("You poked the enemy. They recieve " + hitDamage + " points of damage to their health.");
+                }
             }
         }
 
