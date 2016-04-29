@@ -43,6 +43,11 @@ public class SceneChangeScript : MonoBehaviour {
 		UnityEngine.SceneManagement.SceneManager.LoadScene("StoreTab2");
 	}
 
+	public void onGoToMap()
+	{
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Map");
+	}
+
     public void onMenu()
     {
         print("MENU");
