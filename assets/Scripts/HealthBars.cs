@@ -30,7 +30,9 @@ public class HealthBars : MonoBehaviour
         playerHealthNum.text = playerHealth + "";
         enemyHealthNum = GameObject.Find("EnemyHealthNum").GetComponent<Text>();
         enemyHealthNum.text = enemyHealth + "";
-        
+
+		playerHealth = playerHealth * (100 / playerHealth);
+		enemyHealth = enemyHealth * (100 / enemyHealth);
     }
 
     // Update is called once per frame
@@ -38,6 +40,9 @@ public class HealthBars : MonoBehaviour
     {
         playerHealth = mainCamera.GetComponent<PokeBattle>().playerHealth;
         enemyHealth = mainCamera.GetComponent<PokeBattle>().enemyHealth;
+
+		playerHealth = playerHealth * (100 / playerHealth);
+		enemyHealth = enemyHealth * (100 / enemyHealth);
         
 
 		if (mainCamera.GetComponent<PlayerMoveRight> ().poked == 1) {
