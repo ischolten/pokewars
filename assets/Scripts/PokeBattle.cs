@@ -37,6 +37,8 @@ public class PokeBattle : MonoBehaviour
     private Text console;
     public int hitDamage;
 
+	private HttpReq db;
+
 
     // Use this for initialization
     void Start()
@@ -45,11 +47,11 @@ public class PokeBattle : MonoBehaviour
         player = GameObject.Find("Avatar");
         enemy = GameObject.Find("Enemy");
 		playerHealth = ApplicationModel.health;
-        //enemyHealth = EnemyModel.health;
-        enemyHealth = 100;
+        enemyHealth = EnemyModel.health;
+        //enemyHealth = 100;
 		playerXP = ApplicationModel.experience;
-        //enemyXP = EnemyModel.experience;
-        enemyXP = 100;
+        enemyXP = EnemyModel.experience;
+        //enemyXP = 100;
 		playerRank = ApplicationModel.rank;
         //enemyRank = EnemyModel.rank;
         enemyRank = 2;
@@ -67,16 +69,16 @@ public class PokeBattle : MonoBehaviour
         enemyPoked = 0;
 
 		playerStrength = ApplicationModel.strength;
-        //enemyStrength = EnemyModel.strength;
-        enemyStrength = 10;
+        enemyStrength = EnemyModel.strength;
+        //enemyStrength = 10;
 		playerAccuracy = ApplicationModel.speed;
-        //enemyAccuracy = EnemyModel.speed;
-        enemyAccuracy = 10;
+        enemyAccuracy = EnemyModel.speed;
+        //enemyAccuracy = 10;
 
         console = GameObject.Find("Console").GetComponent<Text>();
         console.text = "Poke your enemy!   -->";
 
-        Debug.Log("Initialized!");
+       // Debug.Log("Initialized!");
         if (rankDiff < 0)
         {
             Debug.Log("Enemy is of higher rank");
@@ -113,10 +115,10 @@ public class PokeBattle : MonoBehaviour
 
 			if (hitAccuracy >= playerAccuracy) {
 				playerMiss = 1;
-				Debug.Log ("You missed.");
+				//Debug.Log ("You missed.");
 			} else {
 				enemyHealth -= hitDamage;
-				Debug.Log ("POKE!");
+				//Debug.Log ("POKE!");
 			}
            
             // enemy pokes back after player Pokes
@@ -154,10 +156,10 @@ public class PokeBattle : MonoBehaviour
 
 			if (hitAccuracy >= enemyAccuracy) {
 				enemyMiss = 1;
-				Debug.Log ("You missed.");
+				//Debug.Log ("You missed.");
 			} else {
 				playerHealth -= hitDamage;
-				Debug.Log ("POKE!");
+				//Debug.Log ("POKE!");
 			}
 
             // check for battle end
@@ -185,8 +187,10 @@ public class PokeBattle : MonoBehaviour
         if (winner.name.Equals(enemy.name))
         {
             myGUITexture = (Texture2D)Resources.Load("tempLoseScreen.png");
-            Debug.Log("Sorry, you lost. You lost both experience and gold.");
-            playerXP -= 15;
+            //Debug.Log("Sorry, you lost. You lost both experience and gold.");
+			console.text = "You lost. Try again! \nYou have gain 10 exp and lost " 
+				+ (int)(playerGold * .05)+ "pieces of gold";
+            playerXP += 10;
             playerGold -= (int)(playerGold * .05);
             
     //load lose screen
@@ -194,32 +198,42 @@ public class PokeBattle : MonoBehaviour
         else
         {
             myGUITexture = (Texture2D)Resources.Load("tempWinScreen.png");
-            Debug.Log("Congratulations! You won! You have gained both experience and gold!");
+            //Debug.Log("Congratulations! You won! You have gained both experience and gold!");
+			console.text = "You lost. Try again! \nYou have gain 30 exp and lost " 
+				+ (int)((enemyGold * .05) + 50 )+ "pieces of gold";
             playerGold += (int)(enemyGold * .05) + 50;
-            playerXP += 40;
-            if ((int)(playerXP / 10) > playerRank)
+            playerXP += 30;
+			EnemyModel.npcNum--;
+            if ((int)(playerXP / 100) > playerRank)
             {
                 Debug.Log("Congratulations! You have leveled up!");
                 playerRank += 1;
+				ApplicationModel.speed += 25;
+				ApplicationModel.strength += 25;
+				ApplicationModel.health += 25;
             }
             //load win screen
         }
+
+		ApplicationModel.experience = playerXP;
+		ApplicationModel.gold = playerGold;
+		ApplicationModel.rank = playerRank;
+		StartCoroutine(updatePlayer ());
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("Profile");
     }
 
         //save all stats back into database
 
-        IEnumerator updateUser(int id, int experience, int strength, int health) 
-    {
-        string url = "70.46.202.195/pokewars/index.php/main/process/";
-        string json = string.Format("{\"command\":\"update\",\"id\":\"%i\",\"experience\":\"%i\",\"strength\":\"%i\",\"health\":\"%i\"}",id, experience, strength, health);
-        url += json;
-        WWW www = new WWW(url);
-        yield return www;
-    }
-
-    
-        
-
-
+	public IEnumerator updatePlayer() {
+		db = GameObject.Find ("HttpReq").GetComponentInChildren<HttpReq> ();
+		WWW results = db.GET ("70.46.202.195/pokewars/index.php/main/process/%7B%22command%22:%22update%22,%22id%22:%22"
+			+ ApplicationModel.id +"%22,%22experience%22:%22" + ApplicationModel.experience +
+			"%22,%22gold%22:%22" + ApplicationModel.gold +
+			"%22,%22health%22:%22" + ApplicationModel.health +
+			"%22,%22strength%22:%22" + ApplicationModel.strength +
+			"%22,%22speed%22:%22" + ApplicationModel.speed + "%22%7D");
+		yield return results;
+		Debug.Log (results.text);
+	}    
 
 }

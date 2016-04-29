@@ -56,20 +56,25 @@ public class Login : MonoBehaviour {
 		WWW results = db.GET("http://70.46.202.195/pokewars/index.php/main/process/%20%7B%22command%22:%22login%22,%22username%22:%22"
 			+ username + "%22,%22password%22:%22" + password + "%22%7D");
 		yield return results;
-	    //char[] delimiterChars = { ' ', ',', '{', ':', '"' };
-		string[] words = results.text.Split('"');
-		Int32.TryParse (words [3], out ApplicationModel.id);
-		ApplicationModel.name = words[7];
-		Int32.TryParse(words[19],out ApplicationModel.experience);
-		Int32.TryParse (words [23], out ApplicationModel.gold);
-		Int32.TryParse (words[27],out ApplicationModel.health);
-		Int32.TryParse(words[31],out ApplicationModel.strength);
-		Int32.TryParse(words[35],out ApplicationModel.speed);
-		Int32.TryParse(words[39],out ApplicationModel.curr_zone);
-		Int32.TryParse(words[43],out ApplicationModel.curr_field);
-		Debug.Log ("zone: " + ApplicationModel.curr_zone);
-		UnityEngine.SceneManagement.SceneManager.LoadScene("Profile");
+		if (results.text == "Record not found") {
+			Debug.Log ("incorrect login");
+		} else {
+			//char[] delimiterChars = { ' ', ',', '{', ':', '"' };
+			string[] words = results.text.Split ('"');
+			Int32.TryParse (words [3], out ApplicationModel.id);
+			ApplicationModel.name = words [7];
+			Int32.TryParse (words [19], out ApplicationModel.experience);
+			Int32.TryParse (words [23], out ApplicationModel.gold);
+			Int32.TryParse (words [27], out ApplicationModel.health);
+			Int32.TryParse (words [31], out ApplicationModel.strength);
+			Int32.TryParse (words [35], out ApplicationModel.speed);
+			Int32.TryParse (words [39], out ApplicationModel.curr_zone);
+			Int32.TryParse (words [43], out ApplicationModel.curr_field);
+			Debug.Log ("zone: " + ApplicationModel.curr_zone);
+			UnityEngine.SceneManagement.SceneManager.LoadScene ("Profile");
+		}
     }
+
 
     public void onClickRegister()
     {
