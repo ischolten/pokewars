@@ -18,7 +18,8 @@ public class PokeBattle : MonoBehaviour
     private int rankDiff;
     private string username;
     private string password;
-    public GameObject playerHealthBar;
+    
+	public GameObject playerHealthBar;
     public GameObject enemyHealthBar;
     public Text playerHealthNum;
     public Text enemyHealthNum;
@@ -27,6 +28,11 @@ public class PokeBattle : MonoBehaviour
 	public int enemyMiss;
 	public int playerMiss;
     private Texture2D myGUITexture;
+
+	private int playerStrength;
+	private int enemyStrength;
+	private int playerAccuracy;
+	private int enemyAccuracy;
 
 
 
@@ -37,15 +43,16 @@ public class PokeBattle : MonoBehaviour
         //initializing
         player = GameObject.Find("Avatar");
         enemy = GameObject.Find("Enemy");
-        playerHealth = 100; //need to get max health from database
-        enemyHealth = 100;
-        playerXP = 75; //need to get XP from database
-        enemyXP = (int)Random.Range(50, 100);
-        playerRank = 7; //need to get rank from database
-        enemyRank = (int)(enemyXP / 10);
-        playerGold = 500; //need to get gold from database
-        enemyGold = (int)Random.Range(0, 1000);
+		playerHealth = ApplicationModel.health; //need to get max health from database
+        enemyHealth = EnemyModel.health;
+		playerXP = ApplicationModel.experience; //need to get XP from database
+        enemyXP = EnemyModel.experience;
+		playerRank = ApplicationModel.rank; //need to get rank from database
+        enemyRank = EnemyModel.rank;
+		playerGold = ApplicationModel.gold; //need to get gold from database
+        enemyGold = EnemyModel.gold;
         rankDiff = playerRank - enemyRank;
+
         playerHealthBar = GameObject.Find("PlayerHealth");
         enemyHealthBar = GameObject.Find("EnemyHealth");
         playerHealthNum = GameObject.Find("PlayerHealthNum").GetComponent<Text>();
@@ -53,7 +60,12 @@ public class PokeBattle : MonoBehaviour
         enemyHealthNum = GameObject.Find("EnemyHealthNum").GetComponent<Text>();
         enemyHealthNum.text = enemyHealth + "";
         enemyPoked = 0;
-        enemyPoked = 0;
+
+		playerStrength = ApplicationModel.strength;
+		enemyStrength = EnemyModel.strength;
+		playerAccuracy = ApplicationModel.speed;
+		enemyAccuracy = EnemyModel.speed;
+
         Debug.Log("Initialized!");
         if (rankDiff < 0)
         {
@@ -80,58 +92,23 @@ public class PokeBattle : MonoBehaviour
 
     public void pokeEnemy()
     {
-        if (playerHealth > 0 && enemyHealth > 0)
-        {
+		if (playerHealth > 0 && enemyHealth > 0) {
 
-            enemyPoked = 1;
+			enemyPoked = 1;
 
-            //poke
+			//poke
 
-            int hit;
+			int hitAccuracy = (int)Random.Range (1, playerAccuracy + 5);
+			int hitDamage = (int)Random.Range ((int)(playerStrength / 2), playerStrength);
 
-            if (rankDiff < 0) //enemy is of higher rank
-            {
-                hit = (int)Random.Range(0, 5);
-                if (hit <= 1)
-                {
-					playerMiss = 1;
-                    Debug.Log("You missed.");
-                }
-                else
-                {
-                    enemyHealth -= hit;
-                    Debug.Log("POKE!");
-                }
-
-            }
-            else if (rankDiff == 0) //they are of the same rank 
-            {
-                hit = (int)Random.Range(0, 10);
-                if (hit <= 2)
-                {
-					playerMiss = 1;
-                    Debug.Log("You missed.");
-                }
-                else
-                {
-                    enemyHealth -= hit;
-                    Debug.Log("POKE!");
-                }
-            }
-            else // player is of higher rank
-            {
-                hit = (int)Random.Range(0, 15);
-                if (hit <= 2)
-                {
-					playerMiss = 1;
-                    Debug.Log("You missed.");
-                }
-                else
-                {
-                    enemyHealth -= hit;
-                    Debug.Log("POKE!");
-                }
-            }
+			if (hitAccuracy >= playerAccuracy) {
+				playerMiss = 1;
+				Debug.Log ("You missed.");
+			} else {
+				enemyHealth -= hitDamage;
+				Debug.Log ("POKE!");
+			}
+           
             // enemy pokes back after player Pokes
             if (playerHealth > 0 && enemyHealth > 0)
             {
@@ -162,55 +139,16 @@ public class PokeBattle : MonoBehaviour
         {
 
 
-            //animation
+			int hitAccuracy = (int)Random.Range (1, enemyAccuracy + 5);
+			int hitDamage = (int)Random.Range ((int)(enemyStrength / 2), enemyStrength);
 
-            //poke
-
-            int hit;
-
-            if (rankDiff < 0) //enemy is of higher rank
-            {
-                hit = (int)Random.Range(0, 15);
-                if (hit <= 2)
-                {
-					enemyMiss = 1;
-                    Debug.Log("Enemy missed.");
-                }
-                else
-                {
-                    playerHealth -= hit;
-                    Debug.Log("You were poked by the enemy!");
-                }
-
-            }
-            else if (rankDiff == 0) //they are of the same rank 
-            {
-                hit = (int)Random.Range(0, 10);
-                if (hit <= 2)
-                {
-					enemyMiss = 1;
-                    Debug.Log("Enemy missed.");
-                }
-                else
-                {
-                    playerHealth -= hit;
-                    Debug.Log("You were poked by the enemy!");
-                }
-            }
-            else // player is of higher rank
-            {
-                hit = (int)Random.Range(0, 5);
-                if (hit <= 1)
-                {
-					enemyMiss = 1;
-                    Debug.Log("Enemy missed.");
-                }
-                else
-                {
-                    playerHealth -= hit;
-                    Debug.Log("You were poked by the enemy!");
-                }
-            }
+			if (hitAccuracy >= enemyAccuracy) {
+				enemyMiss = 1;
+				Debug.Log ("You missed.");
+			} else {
+				playerHealth -= hitDamage;
+				Debug.Log ("POKE!");
+			}
 
             // check for battle end
             if (playerHealth <= 0)

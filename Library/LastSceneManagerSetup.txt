@@ -1,4 +1,4 @@
 sceneSetups:
-- path: assets/Map.unity
+- path: assets/Welcome.unity
   isLoaded: 1
   isActive: 1
