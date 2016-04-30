@@ -192,8 +192,12 @@ public class PokeBattle : MonoBehaviour
 				+ (int)(playerGold * .05)+ "pieces of gold";
             playerXP += 10;
             playerGold -= (int)(playerGold * .05);
+
+			ApplicationModel.goldDelta = (int)(playerGold * .05);
+			ApplicationModel.expDelta = 10;
             
-    //load lose screen
+    		//load lose screen
+			UnityEngine.SceneManagement.SceneManager.LoadScene("Lose Scene");
 }
         else
         {
@@ -203,6 +207,8 @@ public class PokeBattle : MonoBehaviour
 				+ (int)((enemyGold * .05) + 50 )+ "pieces of gold";
             playerGold += (int)(enemyGold * .05) + 50;
             playerXP += 30;
+			ApplicationModel.goldDelta = (int)(enemyGold * .05) + 50;
+			ApplicationModel.expDelta = 30;
 			EnemyModel.npcNum--;
             if ((int)(playerXP / 100) > playerRank)
             {
@@ -212,7 +218,8 @@ public class PokeBattle : MonoBehaviour
 				ApplicationModel.strength += 25;
 				ApplicationModel.health += 25;
             }
-            //load win screen
+			//load win screen
+			UnityEngine.SceneManagement.SceneManager.LoadScene("WinScene");
         }
 
 		ApplicationModel.experience = playerXP;

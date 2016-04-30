@@ -13,6 +13,9 @@ public class ApplicationModel
 	static public string name;
 	static public int id;
 
+	static public int goldDelta;
+	static public int expDelta;
+
 	static public int curr_zone;
 	static public int curr_field;
 }

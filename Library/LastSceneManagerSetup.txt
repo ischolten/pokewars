@@ -1,4 +1,4 @@
 sceneSetups:
-- path: assets/Welcome.unity
+- path: assets/WinScene.unity
   isLoaded: 1
   isActive: 1
