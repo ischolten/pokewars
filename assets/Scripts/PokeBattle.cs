@@ -226,7 +226,7 @@ public class PokeBattle : MonoBehaviour
 		ApplicationModel.gold = playerGold;
 		ApplicationModel.rank = playerRank;
 		StartCoroutine(updatePlayer ());
-		UnityEngine.SceneManagement.SceneManager.LoadScene ("Profile");
+		//UnityEngine.SceneManagement.SceneManager.LoadScene ("Profile");
     }
 
         //save all stats back into database

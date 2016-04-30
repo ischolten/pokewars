@@ -20,6 +20,21 @@ public class Login : MonoBehaviour {
 	
 	}
 
+	public void register() {
+		GameObject usernametemp = GameObject.Find("InputFieldUsername");
+		ApplicationModel.name = usernametemp.GetComponent<InputField>().text;
+		ApplicationModel.id = 5;
+		ApplicationModel.experience = 0;
+		ApplicationModel.gold = 10;
+		ApplicationModel.health = 50;
+		ApplicationModel.strength = 10;
+		ApplicationModel.speed = 5;
+		ApplicationModel.curr_zone = 1;
+		ApplicationModel.curr_field = 1;
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("Profile");
+
+	}
+
     public void onClickLogin()
     {
         GameObject usernametemp = GameObject.Find("InputFieldUsername");
@@ -56,11 +71,12 @@ public class Login : MonoBehaviour {
 		WWW results = db.GET("http://70.46.202.195/pokewars/index.php/main/process/%20%7B%22command%22:%22login%22,%22username%22:%22"
 			+ username + "%22,%22password%22:%22" + password + "%22%7D");
 		yield return results;
-		if (results.text == "Record not found") {
+		string[] words = results.text.Split ('"');
+		if (words.Length < 30) {
 			Debug.Log ("incorrect login");
 		} else {
 			//char[] delimiterChars = { ' ', ',', '{', ':', '"' };
-			string[] words = results.text.Split ('"');
+
 			Int32.TryParse (words [3], out ApplicationModel.id);
 			ApplicationModel.name = words [7];
 			Int32.TryParse (words [19], out ApplicationModel.experience);
