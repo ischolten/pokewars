@@ -4,6 +4,10 @@ using UnityEngine.UI;
 using System; 
 using System.Collections.Generic;
 
+/*
+ * controls the town and sets the NPCs
+ */
+
 public class TownController : MonoBehaviour {
 
 	public Button e_1;
@@ -20,7 +24,7 @@ public class TownController : MonoBehaviour {
 	private Color npc_color;
 
 
-	// Use this for initialization
+	// sets up the background for different towns
 	void Start () {
 		t_1 = GameObject.Find ("hollowcrest");
 		t_2 = GameObject.Find ("arrowvalley");
@@ -56,11 +60,12 @@ public class TownController : MonoBehaviour {
 		}
 	
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	
 	}
+
+	//retrieves NPC information based on the town
 
 	public void beginBattle() {
 		int min = (ApplicationModel.curr_zone - 1) * 5 + 1;

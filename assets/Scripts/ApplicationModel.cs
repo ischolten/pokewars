@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * holds static information for the player
+ */
+
 public class ApplicationModel
 {
 	static public int experience;

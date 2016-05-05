@@ -4,6 +4,10 @@ using System.Collections;
 using System; 
 using System.Collections.Generic;
 
+/*
+ * sets up the profile with player information
+ */
+
 public class ProfileController : MonoBehaviour {
 
 	public Text hpTxt;
@@ -32,6 +36,10 @@ public class ProfileController : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	/*
+	 * gets the town information for each player
+	 */
 
 	public IEnumerator getTownInfo() {
 		Debug.Log ("getting town info...");

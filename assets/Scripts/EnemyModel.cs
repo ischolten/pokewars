@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * holds static information for the enemy
+ */
+
 public class EnemyModel
 {
 	static public int experience;

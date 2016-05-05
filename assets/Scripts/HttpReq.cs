@@ -2,13 +2,18 @@
 using UnityEngine;
 using System.Collections; 
 using System.Collections.Generic; 
+
+/*
+ * connects to the server and help make server calls 
+ */
+
 class HttpReq : MonoBehaviour
 {   
 
 	void Start(){}
 
 
-
+	//retrieves information with given urls
 	public WWW GET(string url)
 	{
 
@@ -17,6 +22,7 @@ class HttpReq : MonoBehaviour
 		return www; 
 	}
 
+	//updates information with given urls 
 	public WWW POST(string url, Dictionary<string,string> post)
 	{
 		WWWForm form = new WWWForm();

@@ -4,6 +4,11 @@ using UnityEngine.UI;
 using System; 
 using System.Collections.Generic;
 
+/*
+ * A controller for the Map functions 
+ * set the parts of the maps active depending on the player's rank
+ */
+
 public class MapController : MonoBehaviour {
 
 	GameObject t_1;
@@ -18,7 +23,7 @@ public class MapController : MonoBehaviour {
 
 	HttpReq db;
 
-	// Use this for initialization
+	// sets up the active and inactive locations
 	void Start () {
 		
 		if (ApplicationModel.experience < 100) {
@@ -89,6 +94,8 @@ public class MapController : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	// allows the player to change the location they are currently on
 
 	public void selectTown(int t) {
 		StartCoroutine (getTownInfo (t));

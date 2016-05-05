@@ -4,18 +4,20 @@ using UnityEngine.UI;
 using System; 
 using System.Collections.Generic;
 
+/*
+ * sets up the login screen for Login and Register
+ */
+
 public class Login : MonoBehaviour {
 
     private InputField usernameInput;
     private InputField passwordInput;
 	private HttpReq db;
 
-	// Use this for initialization
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	
 	}
@@ -34,6 +36,10 @@ public class Login : MonoBehaviour {
 		UnityEngine.SceneManagement.SceneManager.LoadScene ("Profile");
 
 	}
+
+	/*
+	 * checks for inputs and retirieves player information
+	 */
 
     public void onClickLogin()
     {
